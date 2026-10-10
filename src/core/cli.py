@@ -1,6 +1,5 @@
-from core.llm import NeedleLLM
-from core.controller.model_controller import ModelController
-from core.controller.task_controller import TaskController
+from core.llm import GGUFLLM
+from core.controller import ModelController, TaskController
 from core.permissions import PermissionGate
 from core.tools import AddTool, SubtractTool, MultiplyTool, DivideTool, ToolRegistry
 
@@ -14,7 +13,7 @@ def main() -> None:
     registry.register(MultiplyTool())
     registry.register(DivideTool())
 
-    llm = NeedleLLM(tools=registry.get_model_tools())
+    llm = GGUFLLM(tools=registry.get_model_tools())
 
     try:
         task_controller = TaskController(registry)

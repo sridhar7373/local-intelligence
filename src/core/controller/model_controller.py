@@ -34,10 +34,11 @@ class ModelController:
             ]
 
         if not function_calls:
+            text = response.get("text", "")
             return [
                 ToolResult(
                     success=True,
-                    message="No action required.",
+                    message=text if isinstance(text, str) and text else "No response generated.",
                 )
             ]
 
